@@ -20,14 +20,16 @@ body { margin: 0; padding: 0; }
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v10',
-        zoom: 18,
-        center: [148.9819, -35.3981],
-        pitch: 60,
+        center: [-93.649184, 42.025854],
+		zoom: 18,
+		pitch: 68,
+		bearing: 21.3,
+		hash: true,
         antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
     });
 
     // parameters to ensure the model is georeferenced correctly on the map
-    const modelOrigin = [148.9819, -35.39847];
+    const modelOrigin = [-93.64869, 42.02817];
     const modelAltitude = 0;
     const modelRotate = [Math.PI / 2, 0, 0];
 
@@ -61,14 +63,20 @@ body { margin: 0; padding: 0; }
             this.camera = new THREE.Camera();
             this.scene = new THREE.Scene();
 
-            // create two three.js lights to illuminate the model
-            const directionalLight = new THREE.DirectionalLight(0xffffff);
-            directionalLight.position.set(0, -70, 100).normalize();
-            this.scene.add(directionalLight);
+			// const light = new THREE.AmbientLight(0xffffff); // soft white light
+			// this.scene.add(light);
 
-            const directionalLight2 = new THREE.DirectionalLight(0xffffff);
-            directionalLight2.position.set(0, 70, 100).normalize();
-            this.scene.add(directionalLight2);
+			const light = new THREE.HemisphereLight( 0xffffff, 0x080820, 4.2 );
+			this.scene.add( light );
+
+            // create two three.js lights to illuminate the model
+            // const directionalLight = new THREE.DirectionalLight(0xffffff);
+            // directionalLight.position.set(0, -70, 100).normalize();
+            // this.scene.add(directionalLight);
+
+            // const directionalLight2 = new THREE.DirectionalLight(0xffffff);
+            // directionalLight2.position.set(0, 70, 100).normalize();
+            // this.scene.add(directionalLight2);
 
             // use the three.js GLTF loader to add the 3D model to the three.js scene
             const loader = new THREE.GLTFLoader();
