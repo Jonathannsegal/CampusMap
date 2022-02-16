@@ -11,7 +11,7 @@ const parkLayer = {
 	'source-layer': 'landuse',
 	filter: ['==', 'class', 'park'],
 	paint: {
-	  'fill-color': '#FFFFFF'
+	  'fill-color': '#4E3FC8'
 	}
   };
 
@@ -21,14 +21,12 @@ const Index = () => (
         initialViewState={{
           latitude: 42.0267061,
           longitude: -93.6489112,
-          zoom: 16,
-		  pitch: 60
+          zoom: 16
         }}
         style={{width: "100vw", height: "100vh"}}
-        mapStyle="mapbox://styles/mapbox/light-v10"
+        mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={MAPBOX_TOKEN}
       >
-		<Layer {...parkLayer} />
       </Map>
 		{/* <Section>
 			<h2 className='text-xl font-semibold text-zinc-800 dark:text-zinc-200'>
